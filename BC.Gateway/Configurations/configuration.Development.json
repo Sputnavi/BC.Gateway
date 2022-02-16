@@ -26,6 +26,11 @@
 		}
 	],
 	"GlobalConfiguration": {
+		// The most important thing to note here is BaseUrl. 
+		// Ocelot needs to know the URL it is running under in order to do Header find & replace 
+		// and for certain administration configurations. 
+		// When setting this URL it should be the external URL that clients will see Ocelot running on.
+		// https://ocelot.readthedocs.io/en/latest/introduction/gettingstarted.html
 		"BaseUrl": "https://localhost:5011"
 	}
 }
