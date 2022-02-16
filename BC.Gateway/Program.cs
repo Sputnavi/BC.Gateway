@@ -25,7 +25,10 @@ namespace BC.Gateway
             })
             .ConfigureLogging((hostingContext, logging) =>
             {
-                //add your logging
+                if (hostingContext.HostingEnvironment.IsDevelopment())
+                {
+                    logging.AddConsole();
+                }
             })
             .UseIISIntegration()
             .Configure(app =>
@@ -35,5 +38,5 @@ namespace BC.Gateway
             .Build()
             .Run();
         }
-    } 
+    }
 }
