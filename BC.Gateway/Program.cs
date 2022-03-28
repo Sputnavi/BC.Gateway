@@ -1,3 +1,4 @@
+using BC.Gateway.Helpers;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
@@ -19,9 +20,13 @@ namespace BC.Gateway
                     .AddJsonFile(Path.Combine("Configurations", $"configuration.{hostingContext.HostingEnvironment.EnvironmentName}.json"), true, true)
                     .AddEnvironmentVariables();
             })
-            .ConfigureServices(s =>
+            .ConfigureServices((hostingContext, servcies) =>
             {
-                s.AddOcelot();
+                var configuration = hostingContext.Configuration;
+
+                servcies.ConfigureJwt(configuration);
+
+                servcies.AddOcelot();
             })
             .ConfigureLogging((hostingContext, logging) =>
             {

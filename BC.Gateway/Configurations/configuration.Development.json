@@ -13,6 +13,37 @@
 			"UpstreamHttpMethod": [ "Get" ]
 		},
 		{
+			"DownstreamPathTemplate": "/posts/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "jsonplaceholder.typicode.com",
+					"Port": 443
+				}
+			],
+			"UpstreamPathTemplate": "/test/{id}",
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/posts/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "jsonplaceholder.typicode.com",
+					"Port": 443
+				}
+			],
+			"UpstreamPathTemplate": "/posts/{id}",
+			"UpstreamHttpMethod": [ "Get" ]
+		},
+		{
 			"DownstreamPathTemplate": "/api/Authentication/login",
 			"DownstreamScheme": "https",
 			"DownstreamHostAndPorts": [
