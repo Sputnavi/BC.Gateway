@@ -141,6 +141,7 @@
 			],
 			"UpstreamPathTemplate": "/api/admin/users/{id}",
 			"UpstreamHttpMethod": [ "Get", "Put", "Delete" ]
+			//ToDO: allow for user/admin/master
 		},
 		{
 			"DownstreamPathTemplate": "/api/admin/users/{id}/password-change",
@@ -163,6 +164,13 @@
 					"Port": 5021
 				}
 			],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			},
 			"UpstreamPathTemplate": "/api/admin/users/account",
 			"UpstreamHttpMethod": [ "Get" ]
 		},
@@ -181,7 +189,7 @@
 			],
 			"UpstreamPathTemplate": "/api/bicycles",
 			"UpstreamHttpMethod": [ "Get", "Head", "Post" ]
-		},
+		}, //ToDo
 		{
 			"DownstreamPathTemplate": "/api/bicycles/{id}",
 			"DownstreamScheme": "https",
@@ -193,7 +201,7 @@
 			],
 			"UpstreamPathTemplate": "/api/bicycles/{id}",
 			"UpstreamHttpMethod": [ "Get", "Delete", "Put", "Patch" ]
-		},
+		}, //Todo
 		{
 			"DownstreamPathTemplate": "/api/users/{userId}/bicycles",
 			"DownstreamScheme": "https",
@@ -205,7 +213,7 @@
 			],
 			"UpstreamPathTemplate": "/api/users/{userId}/bicycles",
 			"UpstreamHttpMethod": [ "Get" ]
-		},
+		}, //Todo
 		///
 		//		Bc.DeliveryOrders
 		///
@@ -221,6 +229,7 @@
 			],
 			"UpstreamPathTemplate": "/api/admin/delivery-orders",
 			"UpstreamHttpMethod": [ "Get", "Post" ]
+			//ToDo: admin & master
 		},
 		{
 			"DownstreamPathTemplate": "/api/admin/delivery-orders/{id}",
@@ -233,6 +242,7 @@
 			],
 			"UpstreamPathTemplate": "/api/admin/delivery-orders/{id}",
 			"UpstreamHttpMethod": [ "Get", "Delete", "Put" ]
+			//ToDo: admin master
 		},
 		// Providers Controller
 		{
@@ -246,7 +256,7 @@
 			],
 			"UpstreamPathTemplate": "/api/admin/providers",
 			"UpstreamHttpMethod": [ "Get", "Post" ]
-		},
+		}, //todo: admin - master
 		{
 			"DownstreamPathTemplate": "/api/admin/providers/{id}",
 			"DownstreamScheme": "https",
@@ -257,7 +267,7 @@
 				}
 			],
 			"UpstreamPathTemplate": "/api/admin/providers/{id}",
-			"UpstreamHttpMethod": [ "Get", "Delete", "Put" ]
+			"UpstreamHttpMethod": [ "Get", "Delete", "Put" ] //todo admin master
 		},
 		///
 		//		Bc.Problems
@@ -273,7 +283,14 @@
 				}
 			],
 			"UpstreamPathTemplate": "/api/problems",
-			"UpstreamHttpMethod": [ "Get", "Post", "Head" ]
+			"UpstreamHttpMethod": [ "Get", "Post", "Head" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
 		},
 		{
 			"DownstreamPathTemplate": "/api/problems/{id}",
@@ -285,7 +302,11 @@
 				}
 			],
 			"UpstreamPathTemplate": "/api/problems/{id}",
-			"UpstreamHttpMethod": [ "Get", "Delete", "Put", "Patch" ]
+			"UpstreamHttpMethod": [ "Get", "Delete", "Put", "Patch" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			}
 		},
 		{
 			"DownstreamPathTemplate": "/api/users/{userId}/problems",
@@ -297,7 +318,14 @@
 				}
 			],
 			"UpstreamPathTemplate": "/api/users/{userId}/problems",
-			"UpstreamHttpMethod": [ "Get" ]
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "User"
+			}
 		},
 		{
 			"DownstreamPathTemplate": "/api/masters/{masterId}/problems",
@@ -309,7 +337,14 @@
 				}
 			],
 			"UpstreamPathTemplate": "/api/masters/{masterId}/problems",
-			"UpstreamHttpMethod": [ "Get" ]
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Master"
+			}
 		},
 		{
 			"DownstreamPathTemplate": "/api/problems/new",
@@ -321,7 +356,7 @@
 				}
 			],
 			"UpstreamPathTemplate": "/api/problems/new",
-			"UpstreamHttpMethod": [ "Get" ]
+			"UpstreamHttpMethod": [ "Get" ] //ToDO: master-admin
 		},
 		{
 			"DownstreamPathTemplate": "/api/problems/{id}/progress",
@@ -333,7 +368,7 @@
 				}
 			],
 			"UpstreamPathTemplate": "/api/problems/{id}/progress",
-			"UpstreamHttpMethod": [ "Put" ]
+			"UpstreamHttpMethod": [ "Put" ] // todo master admin
 		},
 		///
 		//		Bc.PartModels
@@ -349,7 +384,30 @@
 				}
 			],
 			"UpstreamPathTemplate": "/api/admin/part-models",
-			"UpstreamHttpMethod": [ "Get", "Post" ]
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/part-models",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/part-models",
+			"UpstreamHttpMethod": [ "Post" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
 		},
 		{
 			"DownstreamPathTemplate": "/api/admin/part-models/{id}",
@@ -361,7 +419,30 @@
 				}
 			],
 			"UpstreamPathTemplate": "/api/admin/part-models/{id}",
-			"UpstreamHttpMethod": [ "Get", "Delete", "Put", "Head" ]
+			"UpstreamHttpMethod": [ "Get", "Head" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/part-models/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/part-models/{id}",
+			"UpstreamHttpMethod": [ "Delete", "Put" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
 		},
 		// Parts Controller
 		{
@@ -374,7 +455,30 @@
 				}
 			],
 			"UpstreamPathTemplate": "/api/admin/parts",
-			"UpstreamHttpMethod": [ "Get", "Post", "Head" ]
+			"UpstreamHttpMethod": [ "Get", "Head" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/parts",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/parts",
+			"UpstreamHttpMethod": [ "Post" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
 		},
 		{
 			"DownstreamPathTemplate": "/api/admin/parts/{id}",
@@ -386,7 +490,30 @@
 				}
 			],
 			"UpstreamPathTemplate": "/api/admin/parts/{id}",
-			"UpstreamHttpMethod": [ "Get", "Delete", "Put", "Patch" ]
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/parts/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/parts/{id}",
+			"UpstreamHttpMethod": [ "Delete", "Put", "Patch" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
 		},
 		// Manufacturers Controller
 		{
@@ -399,7 +526,30 @@
 				}
 			],
 			"UpstreamPathTemplate": "/api/admin/manufacturers",
-			"UpstreamHttpMethod": [ "Get", "Post", "Head" ]
+			"UpstreamHttpMethod": [ "Get", "Head" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/manufacturers",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/manufacturers",
+			"UpstreamHttpMethod": [ "Post" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
 		},
 		{
 			"DownstreamPathTemplate": "/api/admin/manufacturers/{id}",
@@ -411,7 +561,30 @@
 				}
 			],
 			"UpstreamPathTemplate": "/api/admin/manufacturers/{id}",
-			"UpstreamHttpMethod": [ "Get", "Delete" ]
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/manufacturers/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/manufacturers/{id}",
+			"UpstreamHttpMethod": [ "Delete" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
 		}
 	],
 	"GlobalConfiguration": {

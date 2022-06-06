@@ -39,7 +39,15 @@ namespace BC.Gateway
             .Configure(app =>
             {
                 app.UseCors("CorsPolicy");
-                app.UseOcelot().Wait();
+                //var configuration = new OcelotPipelineConfiguration
+                //{
+                //    AuthorizationMiddleware = async (httpContext, next) =>
+                //    {
+                //        await OcelotAuthorizationMiddleware.Authorize(httpContext, next);
+                //    }
+                //};
+
+                app.UseOcelot().Wait();//configuration);
             })
             .Build()
             .Run();
