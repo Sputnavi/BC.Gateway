@@ -20,13 +20,13 @@ namespace BC.Gateway
                     .AddJsonFile(Path.Combine("Configurations", $"configuration.{hostingContext.HostingEnvironment.EnvironmentName}.json"), true, true)
                     .AddEnvironmentVariables();
             })
-            .ConfigureServices((hostingContext, servcies) =>
+            .ConfigureServices((hostingContext, services) =>
             {
                 var configuration = hostingContext.Configuration;
 
-                servcies.ConfigureJwt(configuration);
-
-                servcies.AddOcelot();
+                services.ConfigureJwt(configuration);
+                services.ConfigureCorsPolicy();
+                services.AddOcelot();
             })
             .ConfigureLogging((hostingContext, logging) =>
             {
@@ -38,6 +38,7 @@ namespace BC.Gateway
             .UseIISIntegration()
             .Configure(app =>
             {
+                app.UseCors("CorsPolicy");
                 app.UseOcelot().Wait();
             })
             .Build()

@@ -43,6 +43,10 @@
 			"UpstreamPathTemplate": "/posts/{id}",
 			"UpstreamHttpMethod": [ "Get" ]
 		},
+		///
+		//		Bc.AuthenticationMicroservice
+		///
+		// Authentication Controller
 		{
 			"DownstreamPathTemplate": "/api/Authentication/login",
 			"DownstreamScheme": "https",
@@ -54,6 +58,360 @@
 			],
 			"UpstreamPathTemplate": "/api/Authentication/login",
 			"UpstreamHttpMethod": [ "Post" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/Authentication/register",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/Authentication/register",
+			"UpstreamHttpMethod": [ "Post" ]
+		},
+		// Roles Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/roles",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/roles",
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/roles/{roleName}/users",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/roles/{roleName}/users",
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
+		},
+		// Users Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/users",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/users",
+			"UpstreamHttpMethod": [ "Get", "Post" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/users/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/users/{id}",
+			"UpstreamHttpMethod": [ "Get", "Put", "Delete" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/users/{id}/password-change",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/users/{id}/password-change",
+			"UpstreamHttpMethod": [ "Put" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/users/account",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/users/account",
+			"UpstreamHttpMethod": [ "Get" ]
+		},
+		///
+		//		Bc.Bicycles
+		///
+		// Bicycles Controller
+		{
+			"DownstreamPathTemplate": "/api/bicycles",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5070
+				}
+			],
+			"UpstreamPathTemplate": "/api/bicycles",
+			"UpstreamHttpMethod": [ "Get", "Head", "Post" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/bicycles/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5070
+				}
+			],
+			"UpstreamPathTemplate": "/api/bicycles/{id}",
+			"UpstreamHttpMethod": [ "Get", "Delete", "Put", "Patch" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/users/{userId}/bicycles",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5070
+				}
+			],
+			"UpstreamPathTemplate": "/api/users/{userId}/bicycles",
+			"UpstreamHttpMethod": [ "Get" ]
+		},
+		///
+		//		Bc.DeliveryOrders
+		///
+		// Delivery Orders Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/delivery-orders",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5040
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/delivery-orders",
+			"UpstreamHttpMethod": [ "Get", "Post" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/delivery-orders/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5040
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/delivery-orders/{id}",
+			"UpstreamHttpMethod": [ "Get", "Delete", "Put" ]
+		},
+		// Providers Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/providers",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5040
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/providers",
+			"UpstreamHttpMethod": [ "Get", "Post" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/providers/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5040
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/providers/{id}",
+			"UpstreamHttpMethod": [ "Get", "Delete", "Put" ]
+		},
+		///
+		//		Bc.Problems
+		///
+		// Problems Controller
+		{
+			"DownstreamPathTemplate": "/api/problems",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5050
+				}
+			],
+			"UpstreamPathTemplate": "/api/problems",
+			"UpstreamHttpMethod": [ "Get", "Post", "Head" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/problems/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5050
+				}
+			],
+			"UpstreamPathTemplate": "/api/problems/{id}",
+			"UpstreamHttpMethod": [ "Get", "Delete", "Put", "Patch" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/users/{userId}/problems",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5050
+				}
+			],
+			"UpstreamPathTemplate": "/api/users/{userId}/problems",
+			"UpstreamHttpMethod": [ "Get" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/masters/{masterId}/problems",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5050
+				}
+			],
+			"UpstreamPathTemplate": "/api/masters/{masterId}/problems",
+			"UpstreamHttpMethod": [ "Get" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/problems/new",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5050
+				}
+			],
+			"UpstreamPathTemplate": "/api/problems/new",
+			"UpstreamHttpMethod": [ "Get" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/problems/{id}/progress",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5050
+				}
+			],
+			"UpstreamPathTemplate": "/api/problems/{id}/progress",
+			"UpstreamHttpMethod": [ "Put" ]
+		},
+		///
+		//		Bc.PartModels
+		///
+		// Part Models Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/part-models",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/part-models",
+			"UpstreamHttpMethod": [ "Get", "Post" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/part-models/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/part-models/{id}",
+			"UpstreamHttpMethod": [ "Get", "Delete", "Put", "Head" ]
+		},
+		// Parts Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/parts",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/parts",
+			"UpstreamHttpMethod": [ "Get", "Post", "Head" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/parts/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/parts/{id}",
+			"UpstreamHttpMethod": [ "Get", "Delete", "Put", "Patch" ]
+		},
+		// Manufacturers Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/manufacturers",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/manufacturers",
+			"UpstreamHttpMethod": [ "Get", "Post", "Head" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/manufacturers/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/manufacturers/{id}",
+			"UpstreamHttpMethod": [ "Get", "Delete" ]
 		}
 	],
 	"GlobalConfiguration": {
