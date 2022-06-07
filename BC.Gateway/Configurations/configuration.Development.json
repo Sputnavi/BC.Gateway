@@ -43,6 +43,10 @@
 			"UpstreamPathTemplate": "/posts/{id}",
 			"UpstreamHttpMethod": [ "Get" ]
 		},
+		///
+		//		Bc.AuthenticationMicroservice
+		///
+		// Authentication Controller
 		{
 			"DownstreamPathTemplate": "/api/Authentication/login",
 			"DownstreamScheme": "https",
@@ -54,6 +58,685 @@
 			],
 			"UpstreamPathTemplate": "/api/Authentication/login",
 			"UpstreamHttpMethod": [ "Post" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/Authentication/register",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/Authentication/register",
+			"UpstreamHttpMethod": [ "Post" ]
+		},
+		// Roles Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/roles",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/roles",
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/roles/{roleName}/users",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/roles/{roleName}/users",
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
+		},
+		// Users Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/users",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/users",
+			"UpstreamHttpMethod": [ "Get", "Post" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/users/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/users/{id}",
+			"UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User,Master"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/users/{id}/password-change",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/users/{id}/password-change",
+			"UpstreamHttpMethod": [ "Put" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User,Master"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/users/account/mine",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5021
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/users/account/mine",  
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "User,Admin,Master"
+			}
+		},
+		///
+		//		Bc.Bicycles
+		///
+		// Bicycles Controller
+		{
+			"DownstreamPathTemplate": "/api/bicycles",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5070
+				}
+			],
+			"UpstreamPathTemplate": "/api/bicycles",
+			"UpstreamHttpMethod": [ "Get", "Head" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User,Master"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/bicycles",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5070
+				}
+			],
+			"UpstreamPathTemplate": "/api/bicycles",
+			"UpstreamHttpMethod": [ "Post" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/bicycles/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5070
+				}
+			],
+			"UpstreamPathTemplate": "/api/bicycles/{id}",
+			"UpstreamHttpMethod": [ "Get"],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User,Master"
+			}
+		}, 
+		{
+			"DownstreamPathTemplate": "/api/bicycles/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5070
+				}
+			],
+			"UpstreamPathTemplate": "/api/bicycles/{id}",
+			"UpstreamHttpMethod": [ "Delete", "Put", "Patch" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/users/{userId}/bicycles",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5070
+				}
+			],
+			"UpstreamPathTemplate": "/api/users/{userId}/bicycles",
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User,Master"
+			}
+		},
+		///
+		//		Bc.DeliveryOrders
+		///
+		// Delivery Orders Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/delivery-orders",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5040
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/delivery-orders",
+			"UpstreamHttpMethod": [ "Get", "Post" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,Master"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/delivery-orders/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5040
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/delivery-orders/{id}",
+			"UpstreamHttpMethod": [ "Get", "Delete", "Put" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,Master"
+			}
+		},
+		// Providers Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/providers",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5040
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/providers",
+			"UpstreamHttpMethod": [ "Get", "Post" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,Master"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/providers/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5040
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/providers/{id}",
+			"UpstreamHttpMethod": [ "Get", "Delete", "Put" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,Master"
+			}
+		},
+		///
+		//		Bc.Problems
+		///
+		// Problems Controller
+		{
+			"DownstreamPathTemplate": "/api/problems",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5050
+				}
+			],
+			"UpstreamPathTemplate": "/api/problems",
+			"UpstreamHttpMethod": [ "Get", "Head" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/problems",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5050
+				}
+			],
+			"UpstreamPathTemplate": "/api/problems",
+			"UpstreamHttpMethod": [ "Post" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "User"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/problems/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5050
+				}
+			],
+			"UpstreamPathTemplate": "/api/problems/{id}",
+			"UpstreamHttpMethod": [ "Get", "Delete", "Put", "Patch" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User,Master"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/users/{userId}/problems",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5050
+				}
+			],
+			"UpstreamPathTemplate": "/api/users/{userId}/problems",
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "User,Admin"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/masters/{masterId}/problems",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5050
+				}
+			],
+			"UpstreamPathTemplate": "/api/masters/{masterId}/problems",
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Master,Admin"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/problems/new",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5050
+				}
+			],
+			"UpstreamPathTemplate": "/api/problems/new",
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,Master"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/problems/{id}/progress",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5050
+				}
+			],
+			"UpstreamPathTemplate": "/api/problems/{id}/progress",
+			"UpstreamHttpMethod": [ "Put" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,Master"
+			}
+		},
+		///
+		//		Bc.PartModels
+		///
+		// Part Models Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/part-models",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/part-models",
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User,Master"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/part-models",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/part-models",
+			"UpstreamHttpMethod": [ "Post" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/part-models/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/part-models/{id}",
+			"UpstreamHttpMethod": [ "Get", "Head" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User,Master"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/part-models/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/part-models/{id}",
+			"UpstreamHttpMethod": [ "Delete", "Put" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
+		},
+		// Parts Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/parts",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/parts",
+			"UpstreamHttpMethod": [ "Get", "Head" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User,Master"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/parts",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/parts",
+			"UpstreamHttpMethod": [ "Post" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/parts/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/parts/{id}",
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User,Master"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/parts/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/parts/{id}",
+			"UpstreamHttpMethod": [ "Delete", "Put", "Patch" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
+		},
+		// Manufacturers Controller
+		{
+			"DownstreamPathTemplate": "/api/admin/manufacturers",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/manufacturers",
+			"UpstreamHttpMethod": [ "Get", "Head" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User,Master"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/manufacturers",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/manufacturers",
+			"UpstreamHttpMethod": [ "Post" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/manufacturers/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/manufacturers/{id}",
+			"UpstreamHttpMethod": [ "Get" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin,User,Master"
+			}
+		},
+		{
+			"DownstreamPathTemplate": "/api/admin/manufacturers/{id}",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5030
+				}
+			],
+			"UpstreamPathTemplate": "/api/admin/manufacturers/{id}",
+			"UpstreamHttpMethod": [ "Delete" ],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {
+				"Role": "Admin"
+			}
 		}
 	],
 	"GlobalConfiguration": {

@@ -11,4 +11,10 @@
     <PackageReference Include="Ocelot" Version="18.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Configurations\configuration.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
